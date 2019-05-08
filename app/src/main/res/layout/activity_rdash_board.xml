@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".RDashBoardActivity">
+
+    <!--//top bar-->
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TopBar"
+        android:background="@drawable/top_bar_border">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="100"
+                android:fontFamily="@font/montserratsemibold"
+                android:text="SCRIPT"
+                android:textAlignment="center"
+                android:textColor="@color/colorText"
+                android:textSize="15pt" />
+
+            <!--<ImageView-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_weight="15"-->
+            <!--android:src="@drawable/ic_user" />-->
+        </LinearLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <!--content-->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        android:scrollbarStyle="insideInset">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="76dp"
+                android:layout_marginBottom="146dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+
+                <!--Continue Reading Card View-->
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/r_dash_CardView_ContinueReading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_margin="10dp"
+                    android:background="@color/colorText"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="569dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="85dp"
+                            android:layout_height="91dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_reading" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/montserratsemibold"
+                            android:text="Continue Working"
+                            android:textSize="@dimen/TagLine"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/montserratsemibold"
+                            android:text="Pick up where you left off "
+                            android:textSize="@dimen/BodyText" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <!--My papers Card View-->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/r_dash_CardView_MyDeadlines"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@color/colorText"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="85dp"
+                            android:layout_height="91dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_s_deadline" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/montserratsemibold"
+                            android:text="Deadlines"
+                            android:textSize="@dimen/TagLine"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/montserratsemibold"
+                            android:text="View ToDo list and deadlines. "
+                            android:textSize="@dimen/BodyText" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+                <!--My deadlines card view-->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/r_dash_CardView_MyPapers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@color/colorText"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="569dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="85dp"
+                            android:layout_height="91dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/papers" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/montserratsemibold"
+                            android:text="My Papers"
+                            android:textSize="@dimen/TagLine"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/montserratsemibold"
+                            android:text="View all your papers or add a new one."
+                            android:textSize="@dimen/BodyText" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!--//bottom bar-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/RelativeLayoutBottomNavBar">
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/R_dash_BottomNavBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bottom_bar_border"
+            app:menu="@menu/bottom_menu"
+            app:itemHorizontalTranslationEnabled="false">
+
+
+        </android.support.design.widget.BottomNavigationView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

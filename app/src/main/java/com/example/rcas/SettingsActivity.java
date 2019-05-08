@@ -1,0 +1,63 @@
+package com.example.rcas;
+
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+public class SettingsActivity extends AppCompatActivity {
+    private Button btn_signout;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.Settings_BottomNavBar);
+        btn_signout =(Button)findViewById(R.id.btn_signout);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch(menuItem.getItemId())
+                {
+                    case R.id.ic_item_home:
+//                        TODO: logic to choose intent based on userType.
+                        Intent intent1 = new Intent(SettingsActivity.this, SDashBoardActivity.class);
+                        startActivity(intent1);
+                        break;
+                    case R.id.ic_item_notifications:
+                        Intent intent2 = new Intent(SettingsActivity.this, SNotifActivity.class);
+                        startActivity(intent2);
+
+
+                        break;
+                    case R.id.ic_item_settings:
+                        Intent intent3 = new Intent(SettingsActivity.this, SettingsActivity.class);
+                        startActivity(intent3);
+
+                        break;
+
+                }
+
+                return false;
+            }
+        });
+        btn_signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+    }
+
