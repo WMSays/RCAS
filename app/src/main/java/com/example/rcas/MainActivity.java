@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                                            }
                                         }
 
-                                    Log.d("DATA", "" + user.getUserType());
+                                    //Log.d("DATA", "" + user.getUserType());
 
 
                                 }
