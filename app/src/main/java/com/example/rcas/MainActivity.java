@@ -82,15 +82,16 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull final Task<AuthResult> task) {
                     if (!(task.isSuccessful())) {
-                        Toast.makeText(MainActivity.this, "Sign In Failed.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                     //if sign in successful. check user type and intent to dashboard of that usertype
                     else {
                         //firebase initializations
 
-                        mAuth2 = FirebaseAuth.getInstance();
+                        //mAuth2 = FirebaseAuth.getInstance();
                         myFirebaseDatabase = FirebaseDatabase.getInstance();
                         myRef = myFirebaseDatabase.getReference();
+
 
 
 
@@ -108,8 +109,8 @@ public class MainActivity extends AppCompatActivity {
                                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                                     //use User class to read data
                                     //String userID = FirebaseAuth.getInstance().getUid();
-                                    FirebaseUser firebase_user = mAuth2.getCurrentUser();
-
+                                    //FirebaseUser firebase_user = mAuth2.getCurrentUser();
+                                    FirebaseUser firebase_user = mAuth.getCurrentUser();
                                     String userID = firebase_user.getUid();
                                     user.setFirstName(ds.child(userID).getValue(User.class).getFirstName());
                                     user.setLastName(ds.child(userID).getValue(User.class).getLastName());
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                                     user.setUserType(ds.child(userID).getValue(User.class).getUserType());
                                     // final String type= user.getUserType();
                                     final String type= ds.child(userID).getValue(User.class).getUserType();
-                                    Log.d("type", ds.child(userID).getValue(User.class).getUserType());
+                                    //Log.d("type", ds.child(userID).getValue(User.class).getUserType());
 
                                             //String type = user.getUserType();
 
@@ -141,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
                                 Log.d("signin", task.getException().getMessage());
+                                Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
 
