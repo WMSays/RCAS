@@ -21,7 +21,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.Settings_BottomNavBar);
         btn_signout =(Button)findViewById(R.id.btn_signout);
-        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        //BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

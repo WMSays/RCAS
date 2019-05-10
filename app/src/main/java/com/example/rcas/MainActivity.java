@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_mainact_signin;
     private EditText et_signin_email;
     private EditText et_signin_password;
+
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
@@ -67,30 +70,29 @@ public class MainActivity extends AppCompatActivity {
         String SignIn_password= et_signin_password.getText().toString().trim();
 
         //validation
+        //if both enteries are filled, sign in
+
         if(TextUtils.isEmpty(SignIn_email)|| TextUtils.isEmpty(SignIn_password))
         {
             Toast.makeText(MainActivity.this, "Username/Password not entered", Toast.LENGTH_SHORT).show();
 
         }
         else
-        { //if both enteries are filled, sign in
-            mAuth.signInWithEmailAndPassword(SignIn_email,SignIn_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword(SignIn_email, SignIn_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull final Task<AuthResult> task) {
-                    if(!(task.isSuccessful())){
+                    if (!(task.isSuccessful())) {
                         Toast.makeText(MainActivity.this, "Sign In Failed.", Toast.LENGTH_SHORT).show();
                     }
                     //if sign in successful. check user type and intent to dashboard of that usertype
-                    else
-                    {
+                    else {
                         //firebase initializations
 
-                        mAuth2= FirebaseAuth.getInstance();
-                        myFirebaseDatabase= FirebaseDatabase.getInstance();
-                        myRef= myFirebaseDatabase.getReference();
-                        FirebaseUser firebase_user= mAuth2.getCurrentUser();
+                        mAuth2 = FirebaseAuth.getInstance();
+                        myFirebaseDatabase = FirebaseDatabase.getInstance();
+                        myRef = myFirebaseDatabase.getReference();
 
-                        String UserID= firebase_user.getUid();
+
 
 //getting values from firebase
 
@@ -98,45 +100,47 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 showData(dataSnapshot);
-                                btn_mainact_signin.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        String type= user.getUserType();
 
-                                        if("Researcher".equals(type))
-                                        {
-                                            Intent intent= new Intent(MainActivity.this, RDashBoardActivity.class);
-                                            startActivity(intent);
-                                        }
-                                        else
-                                        {
-                                            Intent intent= new Intent(MainActivity.this, SDashBoardActivity.class);
-                                            startActivity(intent);
-                                        }
-                                   }
-                                });
                             }
 
                             private void showData(DataSnapshot dataSnapshot) {
                                 //for loop to iterate through the snapshot
-                                for(DataSnapshot ds : dataSnapshot.getChildren())
-                                {
+                                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                                     //use User class to read data
-                                    String userID= FirebaseAuth.getInstance().getUid();
+                                    //String userID = FirebaseAuth.getInstance().getUid();
+                                    FirebaseUser firebase_user = mAuth2.getCurrentUser();
+
+                                    String userID = firebase_user.getUid();
                                     user.setFirstName(ds.child(userID).getValue(User.class).getFirstName());
                                     user.setLastName(ds.child(userID).getValue(User.class).getLastName());
                                     user.setEmail(ds.child(userID).getValue(User.class).getEmail());
                                     user.setUserType(ds.child(userID).getValue(User.class).getUserType());
-                                    Log.d("DATA","" + user.getUserType());
+                                    // final String type= user.getUserType();
+                                    final String type= ds.child(userID).getValue(User.class).getUserType();
+                                    Log.d("type", ds.child(userID).getValue(User.class).getUserType());
 
+                                            //String type = user.getUserType();
+
+                                            if (type.equalsIgnoreCase("researcher")) {
+                                                Log.d("check", "execueting if");
+                                                Intent intent1 = new Intent(MainActivity.this, RDashBoardActivity.class);
+                                                startActivity(intent1);
+                                            } else {
+                                                Log.d("check", "execueting else");
+                                                Intent intent2 = new Intent(MainActivity.this, SDashBoardActivity.class);
+                                                startActivity(intent2);
+                                           }
+                                        }
+
+                                    Log.d("DATA", "" + user.getUserType());
 
 
                                 }
-                            }
+
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
-                                Log.d("signin",task.getException().getMessage() );
+                                Log.d("signin", task.getException().getMessage());
                             }
                         });
 
@@ -145,9 +149,8 @@ public class MainActivity extends AppCompatActivity {
                     }
 
 
-
                 }
-            });}
+            });
 
 
     }
@@ -165,7 +168,16 @@ public class MainActivity extends AppCompatActivity {
                 if(firebaseAuth.getCurrentUser()!=null)
                 { //TODO: logic to choose activity based on userType.
                     Toast.makeText(MainActivity.this, "Already signed in", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this,SDashBoardActivity.class ));
+                    //startActivity(new Intent(MainActivity.this,SDashBoardActivity.class ));
+                    String type = user.getUserType();
+                    if ("Researcher".equalsIgnoreCase(type)) {
+                        Log.d("check", "execueting 2nd if");
+                        Intent intent1 = new Intent(MainActivity.this, RDashBoardActivity.class);
+                        startActivity(intent1);
+                    } else {Log.d("check", "execueting 2nd else");
+                        Intent intent2 = new Intent(MainActivity.this, SDashBoardActivity.class);
+                        startActivity(intent2);
+                    }
                 }
             }
         };

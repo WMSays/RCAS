@@ -6,10 +6,12 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -45,6 +47,7 @@ public class RAddPaperActivity extends AppCompatActivity {
         public Button btn_r_fragment_paper_upload_next;
         public Uri docUri;
         public ProgressBar pb_upload;
+        public BottomNavigationView BottomNavBar;
         public FirebaseStorage storage; //to uploafd files
         public FirebaseDatabase database; //to store urls of uploaded files
     private DatabaseReference databaseUsers;
@@ -59,6 +62,36 @@ public class RAddPaperActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_radd_paper);
             Init();
+            //add in every activity and change activity name.
+        BottomNavigationView BottomNavBar = (BottomNavigationView) findViewById(R.id.BottomNavBar);
+        //BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        BottomNavBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch(menuItem.getItemId())
+                {
+                    case R.id.ic_item_home:
+//                        TODO: logic to choose intent based on userType.
+                        Intent intent1 = new Intent(RAddPaperActivity.this, RDashBoardActivity.class);
+                        startActivity(intent1);
+                        break;
+                    case R.id.ic_item_notifications:
+                        Intent intent2 = new Intent(RAddPaperActivity.this, SNotifActivity.class);
+                        startActivity(intent2);
+
+
+                        break;
+                    case R.id.ic_item_settings:
+                        Intent intent3 = new Intent(RAddPaperActivity.this, SettingsActivity.class);
+                        startActivity(intent3);
+
+                        break;
+
+                }
+
+                return false;
+            }
+        }); //end add
             select_file.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -218,9 +251,9 @@ Log.d("94",urlTask.getException().getMessage());
             //btn_r_fragment_paper_upload_next= (Button)findViewById(R.id.btn_r_fragment_paper_upload_next);
             pb_upload= (ProgressBar) findViewById(R.id.pb_upload);
             et_r_new_paper_title = (TextView)findViewById(R.id.et_r_new_paper_title);
-                    et_r_new_paper_abstract = (TextView)findViewById(R.id.et_r_new_paper_abstract);
+            et_r_new_paper_abstract = (TextView)findViewById(R.id.et_r_new_paper_abstract);
             firebaseAuth_signup= FirebaseAuth.getInstance();
-
+            BottomNavBar= (BottomNavigationView)findViewById(R.id.BottomNavBar);
             pb_upload.setVisibility(View.GONE);
         }
     }

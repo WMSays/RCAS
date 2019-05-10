@@ -8,14 +8,14 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 public class SDashBoardActivity extends AppCompatActivity {
-
+public BottomNavigationView S_dash_BottomNavBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sdash_board);
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.S_dash_BottomNavBar);
-        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        BottomNavigationView S_dash_BottomNavBar = (BottomNavigationView) findViewById(R.id.S_dash_BottomNavBar);
+        //BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        S_dash_BottomNavBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch(menuItem.getItemId())

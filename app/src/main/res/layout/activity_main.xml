@@ -63,12 +63,37 @@
 
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="84dp"
+        android:layout_marginBottom="54dp"
         android:background="@drawable/edittext_layout"
         android:hint="Password"
         android:inputType="textPassword"
         android:textSize="@dimen/EditText"
         />
+
+  <!--<RadioGroup-->
+      <!--android:layout_gravity="center"-->
+<!--android:layout_marginBottom="30dp"-->
+      <!--android:id="@+id/RG_userType"-->
+      <!--android:layout_marginStart="8dp"-->
+      <!--android:layout_marginEnd="8dp"-->
+      <!--android:layout_width="wrap_content"-->
+      <!--android:layout_height="wrap_content">-->
+      <!--<LinearLayout-->
+          <!--android:layout_width="wrap_content"-->
+          <!--android:layout_height="wrap_content"-->
+          <!--android:orientation="horizontal">-->
+      <!--<RadioButton-->
+          <!--android:layout_width="wrap_content"-->
+          <!--android:layout_height="wrap_content"-->
+          <!--android:id="@+id/RadioResearcher"-->
+          <!--android:text="Researcher"/>-->
+      <!--<RadioButton-->
+          <!--android:layout_width="wrap_content"-->
+          <!--android:layout_height="wrap_content"-->
+          <!--android:id="@+id/RadioSupervisor"-->
+          <!--android:text="Supervisor"/>-->
+      <!--</LinearLayout>-->
+  <!--</RadioGroup>-->
 
     <Button
         android:id="@+id/btn_mainact_signin"

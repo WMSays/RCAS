@@ -99,6 +99,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         final String firstName= et_signup_first_name.getText().toString().trim();
         final String lastName= et_signup_last_name.getText().toString().trim();
         final String userType= sp_signup_type.getSelectedItem().toString().trim();
+        Log.d("type", userType);
 
 //input validations
 

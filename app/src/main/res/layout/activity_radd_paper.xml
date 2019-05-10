@@ -97,6 +97,20 @@
                     android:hint="Abstract" />
 
             </android.support.design.widget.TextInputLayout>
+
+            <!--Supervisor email-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/colorText">
+
+                <EditText
+                    android:id="@+id/et_r_new_paper_s_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Supervisor's Email" />
+
+            </android.support.design.widget.TextInputLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
